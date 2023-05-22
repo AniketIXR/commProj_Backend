@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const Post = require("../models/Post");
-const authMiddleware = require("../middleware/auth");
+const {protect} = require('../controller/authController');
 
 // Create a new post
-router.post("/", authMiddleware, async (req, res) => {
+router.post("/", protect, async (req, res) => {
   try {
     const { name, description, tags } = req.body;
 

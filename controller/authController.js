@@ -106,6 +106,4 @@ exports.protect = catchAsync(
         }
         next();
     }
-
-
 );

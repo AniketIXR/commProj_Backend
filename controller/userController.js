@@ -1,6 +1,5 @@
 const USER = require('../models/userModel');
 const ApiFeatures = require('../Utils/apiFeatures');
-const demodata = "###";
 
 exports.createUser = async (req,res)=>{
 
