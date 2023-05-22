@@ -14,40 +14,7 @@ router.post(
       .isLength({ min: 8 })
       .withMessage("Enter a password with atleast 8 characters"),
   ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        errors: errors.array(),
-      });
-    }
-
-    const salt = await bcrypt.genSalt(10);
-    let secPassword = await bcrypt.hash(req.body.password, salt);
-    try {
-      const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: secPassword,
-        proImage: req.body.proImage,
-        creationTime: req.body.creationTime,
-      });
-
-      newUser
-        .save()
-        .then(() => {
-          console.log(newUser);
-          console.log("New user created successfully");
-        })
-        .catch((error) => {
-          console.error("Error creating user:", error);
-          res.send("Error Ocurred");
-        });
-    } catch {
-      console.error(errors.message);
-      res.send("Server Error");
-    }
-  }
+   signup
 );
 
 module.exports = router;
