@@ -31,8 +31,8 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   const data = {
-    email: user.email,
-    password: user.password,
+    email: email,
+    password: password,
   };
 
   success = true;
@@ -56,11 +56,9 @@ exports.signup = catchAsync(async (req, res, next) => {
   let secPassword = await bcrypt.hash(req.body.password, salt);
 
   const newUser = new User({
-    name: req.body.name,
+    name: req.body.fullName,
     email: req.body.email,
     password: secPassword,
-    proImage: req.body.proImage,
-    creationTime: req.body.creationTime,
   });
 
   await newUser.save();
