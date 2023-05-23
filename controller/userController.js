@@ -1,9 +1,8 @@
 const USER = require('../models/userModel');
 const ApiFeatures = require('../Utils/apiFeatures');
+const catchAsync = require('../Utils/catchAsync');
 
-exports.createUser = async (req,res)=>{
-
-    try{
+exports.createUser =catchAsync( async (req,res)=>{
      const newUser = await USER.create(req.body);
     
      res.status(200).json({
@@ -12,19 +11,13 @@ exports.createUser = async (req,res)=>{
             user: newUser
         }
     });
-    }
-    catch(err)
-    {
-        res.status(500).json({
-            status: 'error',
-            message: err,
-        });
-    }
     
-};
+    
+});
 
-exports.getAllData =async(req, res) => {
-    try{
+//We dont need this in user but for reference of ApiFeatures i have addeed this
+exports.getAllData =catchAsync(async(req, res) => {
+  
         const features = new ApiFeatures(USER.find(),req.query)
         .filter()
         .sort()
@@ -36,11 +29,26 @@ exports.getAllData =async(req, res) => {
                user,  
             },
         });
-    }
-    catch(err){
-        res.status(500).json({
-            status: 'fail',
-            message: err
-        });    
-    } 
-};
+   
+});
+
+exports.updateUser = catchAsync(async(req, res) => {
+    const user = await USER.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators : true,
+    });
+    res.status(200).json({
+        status: "success",
+        data : {
+            nft
+        } 
+    });
+});
+
+exports.deleteUser = catchAsync(async(req, res) => {
+    await USER.findById(req.params.id);
+    res.status(204).json({
+        status: "success",
+        data:null
+    });
+});

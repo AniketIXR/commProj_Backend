@@ -1,5 +1,7 @@
 const express = require('express');
 const  {getAllData,createUser} = require('../controller/userController');
+const {login,signup} = require('../controller/authController');
+const { body } = require("express-validator");
 
 const router = express.Router();
 
@@ -17,6 +19,14 @@ router.route("/signup").post(
         .withMessage("Enter a password with atleast 8 characters"),
     ],
      signup
+  );
+
+  router.route( "/Login").post(
+    [
+      body("email", "Enter a Valid Email").isEmail(),
+      body("password", "Password cannot be blank").exists(),
+    ],
+    login
   );
 
 router.route('/').get(getAllData).post(createUser);
