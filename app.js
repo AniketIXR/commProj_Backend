@@ -2,9 +2,9 @@ const express = require("express");
 const rateLimit = require("express-rate-limit");
 const globalErrorHandler = require("./controller/errorController");
 const AppError = require("./Utils/appError");
-const dataRouter = require("./routes/dataRoute");
 const loginRouter = require("./routes/loginRoute");
 const signupRouter = require("./routes/signupRoute");
+const postRouter = require("./routes/postRoute");
 
 const app = express();
 app.use(express.json());
@@ -17,9 +17,8 @@ const limiter = rateLimit({
 
 app.use("/api", limiter);
 
-app.use("/api/v1/data", dataRouter);
-app.use("/Login", loginRouter);
-app.use("/signup", loginRouter);
+app.use("/api/Login", loginRouter);
+app.use("/api/signup", signupRouter);
 
 //Error handling
 app.all("*", (req, res, next) => {
@@ -29,4 +28,3 @@ app.all("*", (req, res, next) => {
 app.use(globalErrorHandler);
 
 module.exports = app;
-

@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
+  proImage: {
+    type: String,
+    reqired: [true, "Image is required"],
+  },
   name: {
     type: String,
     required: true,
