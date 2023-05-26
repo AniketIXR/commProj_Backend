@@ -17,6 +17,13 @@ exports.createCommunity = catchAsync(async (req, res,next) => {
         owner:decoded.data.email,
     });
 
+    res.status(200).json({
+        status:"success",
+        data:{
+            community,
+        }
+    });
+
 });
 
 exports.createMods = catchAsync(async (req, res, next) => {
@@ -47,3 +54,8 @@ exports.createMods = catchAsync(async (req, res, next) => {
     await com.save();
 
 });
+
+exports.setVisibility =catchAsync(async (req, res, next) => {
+    
+});
+

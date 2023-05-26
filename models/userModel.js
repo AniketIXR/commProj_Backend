@@ -18,6 +18,31 @@ const userSchema = new mongoose.Schema({
     //   message: "Invalid email address",
     // },
   },
+  batch:{
+    type:String,
+    required: [true,"Batch is required"]
+  },
+  branch:{
+    type:String,
+    required: [true,"Branch is required"]
+  },
+  joinedCommunity:{
+    type:{
+      communityName:{
+        type:String,
+        required:[true,'A community name is required']
+      },
+      memCount:{
+        type:Number,
+        required:[true,'Count is required'],
+        default:0,
+      }
+    }
+  },
+  karma:{
+    type:Number,
+    default:0,
+  },
   password: {
     type: String,
     required: true,
