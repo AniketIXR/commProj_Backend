@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  name: {
+  fullName: {
     type: String,
     required: [true, "A name is required"],
     unique: true,
@@ -11,12 +11,12 @@ const userSchema = new mongoose.Schema({
     reqired: [true, "Email is required"],
     lowercase: true,
     unique: true,
-    validate: {
-      validator: function (value) {
-        return "/S+@S+.S+/".test(value);
-      },
-      message: "Invalid email address",
-    },
+    // validate: {
+    //   validator: function (value) {
+    //     return "/.+@.+..+/".test(value);
+    //   },
+    //   message: "Invalid email address",
+    // },
   },
   password: {
     type: String,

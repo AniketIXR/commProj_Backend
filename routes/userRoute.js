@@ -20,7 +20,7 @@ router.route("/signup").post(
     ],
      signup
   );
-
+ 
   router.route( "/Login").post(
     [
       body("email", "Enter a Valid Email").isEmail(),
