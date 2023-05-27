@@ -11,12 +11,6 @@ const userSchema = new mongoose.Schema({
     reqired: [true, "Email is required"],
     lowercase: true,
     unique: true,
-    // validate: {
-    //   validator: function (value) {
-    //     return "/.+@.+..+/".test(value);
-    //   },
-    //   message: "Invalid email address",
-    // },
   },
   batch:{
     type:String,
