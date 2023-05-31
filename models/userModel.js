@@ -4,7 +4,22 @@ const userSchema = new mongoose.Schema({
   fullName: {
     type: String,
     required: [true, "A name is required"],
-    unique: true,
+  },
+  batch: {
+    type: Number,
+    required: [true, "Batch is required"],
+  },
+  branch: {
+    type: String,
+    required: [true, "Branch is required"],
+  },
+  dateJoined: {
+    type: Date,
+    default: Date.now(),
+  },
+  photo: {
+    type: String,
+    reqired: [true, "Image is required"],
   },
   email: {
     type: String,
@@ -12,45 +27,31 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     unique: true,
   },
-  batch:{
-    type:String,
-    required: [true,"Batch is required"]
+  googleId: {
+    type: String,
+    required: [true, "GoogleId id required"],
+    unique: true,
   },
-  branch:{
-    type:String,
-    required: [true,"Branch is required"]
-  },
-  joinedCommunity:{
-    type:{
-      communityName:{
-        type:String,
-        required:[true,'A community name is required']
+  joinedCommunities: {
+    type: {
+      communityName: {
+        type: String,
+        required: [true, "A community name is required"],
       },
-      memCount:{
-        type:Number,
-        required:[true,'Count is required'],
-        default:0,
-      }
-    }
+      memCount: {
+        type: Number,
+        required: [true, "Count is required"],
+        default: 0,
+      },
+    },
+    default: [],
   },
-  karma:{
-    type:Number,
-    default:0,
-  },
-  password: {
-    type: String,
-    required: true,
-    select: false,
-  },
-  proImage: {
-    type: String,
-    reqired: [true, "Image is required"],
-  },
-  creationTime: {
-    type: Date,
-    default: Date.now(),
+  createdPosts: {},
+  contributionScore: {
+    type: Number,
+    default: 0,
   },
 });
 
-const USER = mongoose.model("USER", userSchema);
-module.exports = USER;
+const User = mongoose.model("User", userSchema);
+module.exports = User;

@@ -1,11 +1,14 @@
 const express = require("express");
+const cors = require("cors");
 const rateLimit = require("express-rate-limit");
 const globalErrorHandler = require("./controller/errorController");
 const AppError = require("./Utils/appError");
-const authRouter = require("./routes/userRoute");
+const authRouter = require("./routes/authRoute");
 const postRouter = require("./routes/postRoute");
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
 const limiter = rateLimit({
@@ -16,9 +19,9 @@ const limiter = rateLimit({
 
 app.use("/api", limiter);
 
-app.use("/api/Login", authRouter);
-app.use("/api/signup", authRouter);
-
+// app.use("/api/Login", authRouter);
+// app.use("/api/signup", authRouter);
+app.use("/api/auth", authRouter);
 
 //Error handling
 app.all("*", (req, res, next) => {
