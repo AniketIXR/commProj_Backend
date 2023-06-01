@@ -1,5 +1,4 @@
 const express = require("express");
-const { getAllData, createUser } = require("../controller/userController");
 const { login, signup } = require("../controller/authController");
 const { body } = require("express-validator");
 
@@ -28,7 +27,5 @@ router
     ],
     login
   );
-
-router.route("/").get(getAllData).post(createUser);
 
 module.exports = router;

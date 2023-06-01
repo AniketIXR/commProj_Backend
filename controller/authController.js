@@ -1,16 +1,20 @@
-const { catchAsync } = require("../Utils/catchAsync");
+const { catchAsync } = require("../utils/catchAsync");
 const User = require("../models/userModel");
 const { validationResult } = require("express-validator");
-const AppError = require("../Utils/appError");
+const AppError = require("../utils/appError");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { promisify } = require("util");
 const { OAuth2Client } = require("google-auth-library");
 
+// const signToken = (data) => {
+//   return jwt.sign(data, process.env.JWT_SECRET, {
+//     expiresIn: process.env.JWT_EXPIRES_IN,
+//   });
+// };
+
 const signToken = (data) => {
-  return (token = jwt.sign(data, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
-  }));
+  return jwt.sign(data, process.env.JWT_SECRET);
 };
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -80,6 +84,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     res.status(201).json({
       success: true,
       jwt,
+      user: newUser,
     });
   } else {
     const tokenData = {
@@ -92,6 +97,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     res.status(201).json({
       success: true,
       jwt,
+      user: existingUser,
     });
   }
 });
