@@ -16,7 +16,7 @@ exports.createCommunity = catchAsync(async (req, res, next) => {
     memCount: 1,
     owner: decoded.data.email,
   });
-
+  
   res.status(200).json({
     status: "success",
     data: {
