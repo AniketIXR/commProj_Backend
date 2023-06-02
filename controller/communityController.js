@@ -1,7 +1,7 @@
 const { promisify } = require("util");
 const Community = require("../models/communityModel");
 const User = require("../models/userModel");
-const { catchAsync } = require("../utils/catchAsync");
+const { catchAsync } = require("../Utils/catchAsync");
 
 exports.createCommunity = catchAsync(async (req, res, next) => {
   //   const { name, visibility, allowAnonymity } = req.body;

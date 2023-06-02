@@ -1,4 +1,4 @@
-const { catchAsync } = require("../utils/catchAsync");
+const { catchAsync } = require("../Utils/catchAsync");
 const User = require("../models/userModel");
 const { validationResult } = require("express-validator");
 const AppError = require("../utils/appError");
