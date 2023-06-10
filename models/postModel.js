@@ -27,8 +27,11 @@ const postSchema = new mongoose.Schema({
   },
   time: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
+  comments:{
+    type:[String],
+  }
 });
 
 const Post = mongoose.model("Post", postSchema);
