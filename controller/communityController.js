@@ -1,28 +1,26 @@
 const { promisify } = require("util");
 const Community = require("../models/communityModel");
 const User = require("../models/userModel");
+const { catchAsync } = require("../Utils/catchAsync");
 
 exports.createCommunity = catchAsync(async (req, res, next) => {
-  const token = req.cookies.token;
+  //   const { name, visibility, allowAnonymity } = req.body;
 
-  const decoded = promisify(jwt.verify)(token, process.env.JWT_SECRET);
-
-  const { name, visibility, allowAnonymity } = req.body;
-
-  const community = await Community.create({
-    name: name,
-    visibility: visibility,
-    allowAnonymity: allowAnonymity,
-    memCount: 1,
-    owner: decoded.data.email,
-  });
-
-  res.status(200).json({
-    status: "success",
-    data: {
-      community,
-    },
-  });
+  //   const community = await Community.create({
+  //     name: name,
+  //     visibility: visibility,
+  //     allowAnonymity: allowAnonymity,
+  //     memCount: 1,
+  //     owner: decoded.data.email,
+  //   });
+  console.log(res.user);
+  res.status(200).end();
+  //   res.status(200).json({
+  //     status: "success",
+  //     data: {
+  //       community,
+  //     },
+  //   });
 });
 
 exports.createMods = catchAsync(async (req, res, next) => {
