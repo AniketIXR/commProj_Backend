@@ -23,15 +23,15 @@ exports.newpost = catchAsync(async (req, res, next) => {
 
   const postId = uuidv4();
 
-  const { proImage, name, description, tags, time } = req.body;
+  const { proImage, author, description, tags} = req.body;
 
   const post = new Post({
     proImage,
-    name,
+    communityId: req.params.communityId,
+    author,
     postId: postId,
     description,
-    tags,
-    time,
+    tags
   });
 
   await post.save();
@@ -72,7 +72,7 @@ exports.updatePost = catchAsync(async (req, res, next) => {
   }
 
   post.proImage = req.body.proImage;
-  post.name = req.body.name;
+  post.author = req.body.author;
   post.description = req.body.description;
   post.tags = req.body.tags;
   post.time = req.body.time;

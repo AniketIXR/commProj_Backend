@@ -5,6 +5,11 @@ const postSchema = new mongoose.Schema({
     type: String,
     reqired: [true, "Image is required"],
   },
+  communityId:{
+    typpe: mongoose.Schema.Types.ObjectId,
+    ref: 'Community',
+    required: true,
+  },
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
