@@ -6,7 +6,7 @@ const postSchema = new mongoose.Schema({
     reqired: [true, "Image is required"],
   },
   communityId:{
-    typpe: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Community',
     required: true,
   },
