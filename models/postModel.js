@@ -5,14 +5,14 @@ const postSchema = new mongoose.Schema({
     type: String,
     reqired: [true, "Image is required"],
   },
-  communityId:{
-    typpe: mongoose.Schema.Types.ObjectId,
-    ref: 'Community',
+  communityId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Community",
     required: true,
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
   postId: {
@@ -39,9 +39,9 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  comments:{
-    type:[String],
-  }
+  comments: {
+    type: [String],
+  },
 });
 
 const Post = mongoose.model("Post", postSchema);
